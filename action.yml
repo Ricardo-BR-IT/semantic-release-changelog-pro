@@ -1,0 +1,33 @@
+name: 'Automated Semantic Release Notes & Changelog Pro'
+description: 'Teams waste hours manually curating release notes from messy commit histories or struggle with brittle multi-plugin sema'
+author: 'Ricardo Vieira Forge Cloud'
+branding:
+  icon: 'tag'
+  color: 'blue'
+inputs:
+  current-version:
+    description: 'Current SemVer version (e.g. 1.2.0)'
+    required: false
+    default: '1.0.0'
+  changelog-file:
+    description: 'Path to CHANGELOG.md'
+    required: false
+    default: 'CHANGELOG.md'
+  commits-json:
+    description: 'Optional JSON array of commit messages (falls back to git log)'
+    required: false
+    default: ''
+  write-changelog:
+    description: 'Whether to prepend release notes to CHANGELOG.md'
+    required: false
+    default: 'false'
+outputs:
+  next-version:
+    description: 'Computed next SemVer version'
+  release-type:
+    description: 'major, minor, patch, or none'
+  commit-count:
+    description: 'Number of parsed conventional commits'
+runs:
+  using: 'node20'
+  main: 'src/index.js'
